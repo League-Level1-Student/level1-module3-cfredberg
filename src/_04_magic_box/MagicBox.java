@@ -12,9 +12,11 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -28,12 +30,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 * 
 	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
 	 *    show images or speak.
-	 * 
+	 
 	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
 	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
 	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
 	 */
 
+	MediaPalace m = new MediaPalace();
+	
 	BufferedImage backgroundImage;
 
 
@@ -50,6 +54,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
+		frame.addMouseListener(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +84,30 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getX() > 315 && e.getX() < 370 && e.getY() > 145 && e.getY() < 200) {
+			JFrame pic = new JFrame();
+			try {
+				JLabel label = m.loadImageFromTheInternet("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/281px-Desktop_computer_clipart_-_Yellow_theme.svg.png");
+				pic.add(label);
+				pic.setVisible(true);
+				pic.pack();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}else if (e.getX() > 320 && e.getX() < 360 && e.getY() > 561 && e.getY() < 580) {
+			JFrame pic = new JFrame();
+			try {
+				JLabel label = m.loadImageFromTheInternet("https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Jonathan_G_Meath_portrays_Santa_Claus.jpg/1200px-Jonathan_G_Meath_portrays_Santa_Claus.jpg");
+				pic.add(label);
+				pic.setVisible(true);
+				pic.pack();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		System.out.println(e.getX() + ", " + e.getY());
 	}
 
 	@Override
