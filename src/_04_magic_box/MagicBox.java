@@ -5,6 +5,7 @@ package _04_magic_box;
  */
 
 
+import java.applet.AudioClip;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -85,16 +86,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getX() > 315 && e.getX() < 370 && e.getY() > 145 && e.getY() < 200) {
-			JFrame pic = new JFrame();
-			try {
-				JLabel label = m.loadImageFromTheInternet("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/281px-Desktop_computer_clipart_-_Yellow_theme.svg.png");
-				pic.add(label);
-				pic.setVisible(true);
-				pic.pack();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			m.playMusicOnComputer("src/_04_magic_box/g.wav");
 		}else if (e.getX() > 320 && e.getX() < 360 && e.getY() > 561 && e.getY() < 580) {
 			JFrame pic = new JFrame();
 			try {
@@ -106,8 +98,18 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}else if (e.getX() > 195 && e.getX() < 215 && e.getY() > 535 && e.getY() < 570) {
+			JFrame pic = new JFrame();
+			try {
+				JLabel label = m.loadImageFromTheInternet("https://upload.wikimedia.org/wikipedia/commons/1/10/Apple_1_Woz_1976_at_CHM.agr_cropped.jpg");
+				pic.add(label);
+				pic.setVisible(true);
+				pic.pack();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		System.out.println(e.getX() + ", " + e.getY());
 	}
 
 	@Override
