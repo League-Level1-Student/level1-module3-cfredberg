@@ -19,12 +19,11 @@ public class CowTimer {
 
 	private int minutes;
 	
-	CowTimer(){
-		minutes = 0;
+	CowTimer(int min){
+		this.minutes = min;
 	}
 
-	public void setTime(int minutes) {
-		this.minutes = minutes;
+	public void setTime() {
 		System.out.println("Cow time set to " + minutes + " minutes.");
 	}
 
@@ -39,9 +38,7 @@ public class CowTimer {
 			minutes--;
 		}
 		
-		if (minutes == 0) {
-		playSound("moo.wav");
-		}
+		speak("Hello I am a Cow!");
 		/*
 		 * 3. When the timer is finished, use the playSound method to play a moo sound.
 		 * You can use the .wav file in the default package, or you can download one
