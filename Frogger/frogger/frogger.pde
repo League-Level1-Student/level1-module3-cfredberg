@@ -1,9 +1,11 @@
 car car1;
+car car2;
 
 void setup(){
   size(800, 600);
   
-  car1 = new car(8, 8, 8, 8);
+  car1 = new car(10, 100, 110, 8);
+  car2 = new car(100, 300, 110, 10);
 }
 
 int fx = 390;
@@ -18,9 +20,20 @@ void draw(){
   fill(0, 255, 0);
   ellipse(fx, fy, 20, 20);
   
+  car1.moveL();
   car1.display();
+  car2.moveR();
+  car2.display();
   
   stayInside();
+  
+  if (intersects(car1) == true){
+    fx = 390;
+    fy = 500;
+  }else if (intersects(car2) == true){
+    fx = 390;
+    fy = 500;
+  }
 }
 
 void keyPressed()
@@ -28,19 +41,19 @@ void keyPressed()
     if(key == CODED){
         if(keyCode == UP)
         {
-            fy = fy - 5;
+            fy = fy - 10;
         }
         else if(keyCode == DOWN)
         {
-            fy = fy + 5;
+            fy = fy + 10;
         }
         else if(keyCode == RIGHT)
         {
-            fx = fx + 5;
+            fx = fx + 10;
         }
         else if(keyCode == LEFT)
         {
-            fx = fx - 5;
+            fx = fx - 10;
         }
     }
 }
@@ -61,4 +74,14 @@ void stayInside(){
   if (fy+10 > 600){
     fy = 590;
   }
+}
+
+boolean intersects(car car) {
+ if ((fy > car.getY() && fy < car.getY()+50) &&
+                (fx > car.getX() && fx < car.getX()+car.getSize())) {
+   return true;
+  }
+ else  {
+  return false;
+ }
 }
